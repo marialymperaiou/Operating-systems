@@ -1,0 +1,10 @@
+all: zing zing2
+
+zing: main.o zing.o
+	gcc -o zing zing.o main.o
+
+main.o: main.c
+	gcc -Wall -c main.c
+
+zing2: zing2.o main.o
+	gcc -o zing2 zing2.o main.o
