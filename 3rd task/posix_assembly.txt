@@ -1,0 +1,13 @@
+.loc 1 52 0
+movl $mutex, (%esp)
+.loc 1 46 0
+addl $1,%ebx
+.loc 1 52 0
+call pthread_mutex_lock
+.loc 1 53 0
+movl (%esi),%eax
+addl $1, %eax
+movl %eax,(%esi)
+.loc 1 55 0
+movl $mutex, (%esp)
+call pthread_mutex_unlock
