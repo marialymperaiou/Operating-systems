@@ -93,8 +93,8 @@ install_signal_handlers(void) {
 	 * and write() returns EPIPE instead.
 	 */
 	 if (signal(SIGPIPE, SIG_IGN) < 0) {
-	 	perror("signal: sigpipe");
-	 	exit(1);
+	 perror("signal: sigpipe");
+	 exit(1);
 	 }
 }
 
@@ -127,9 +127,9 @@ int main(int argc, char *argv[])
 		 x->id=i;
 		 x->pid=p;
 		 if(i!=(argc-1)){
-		 	x->next= (struct node *) malloc(sizeof(struct node));
-		 	x->next->prev=x;
-		 	x=x->next;
+		 x->next= (struct node *) malloc(sizeof(struct node));
+		 x->next->prev=x;
+		 x=x->next;
 		 }
 	 }
 	 x->next=k;
@@ -137,7 +137,6 @@ int main(int argc, char *argv[])
 	 nproc = argc-1; /* number of proccesses goes here */
 	 /* Wait for all children to raise SIGSTOP before exec()ing. */
 	 wait_for_ready_children(nproc);
-	
 	 /* Install SIGALRM and SIGCHLD handlers. */
 	 install_signal_handlers();
 	 if (nproc == 0) {
@@ -148,7 +147,7 @@ int main(int argc, char *argv[])
 	 kill(k->pid,SIGCONT);
 	 alarm(SCHED_TQ_SEC);
 	 /* loop forever until we exit from inside a signal handler. */
-	 while (pause())
+	while (pause())
 	 		;
 	 /* Unreachable */
 	 fprintf(stderr, "Internal error: Reached unreachable point\n");
